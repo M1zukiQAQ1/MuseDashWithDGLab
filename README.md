@@ -1,5 +1,6 @@
 # MuseDashWithDGLab
-** 爆great就要被电一下！**
+**[爆great就要被电一下？？](https://www.bilibili.com/video/BV1sFaqenEYw)**
+
 
 ## 安装
 下载[Melon Loader](https://melonloader.net/#downloading-melon-loader-manual-installation)并安装到MuseDash游戏所在文件夹
