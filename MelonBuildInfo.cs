@@ -1,4 +1,4 @@
-namespace TestMod
+namespace MuseDashXDGLab
 {
     internal static class MelonBuildInfo
     {

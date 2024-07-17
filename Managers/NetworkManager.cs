@@ -8,7 +8,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
-namespace TestMod.Managers
+namespace MuseDashXDGLab.Managers
 {
     public class NetworkManager
     {

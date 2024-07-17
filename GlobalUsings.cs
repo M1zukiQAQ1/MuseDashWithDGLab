@@ -9,4 +9,4 @@ global using MuseDashMirror.Extensions.UnityExtensions;
 global using static MuseDashMirror.UIComponents.Colors;
 global using static MuseDashMirror.UIComponents.Fonts;
 global using static MuseDashMirror.Utils.GameObjectUtils;
-global using static TestMod.MelonBuildInfo;
+global using static MuseDashXDGLab.MelonBuildInfo;

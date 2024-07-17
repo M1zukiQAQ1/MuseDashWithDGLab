@@ -3,7 +3,7 @@ using MelonLoader;
 using MuseDashMirror;
 using UnityEngine;
 
-namespace TestMod
+namespace MuseDashXDGLab
 {
     public enum FireMode
     {

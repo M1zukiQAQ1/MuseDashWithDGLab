@@ -6,7 +6,7 @@ using Il2CppAssets.Scripts.PeroTools.Commons;
 using Il2CppFormulaBase;
 using Il2CppGameLogic;
 
-namespace TestMod {
+namespace MuseDashXDGLab {
     public static class GameDataHelper {
         public static int MissCount => Singleton<TaskStageTarget>.instance.GetMiss();
     }

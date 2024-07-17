@@ -2,8 +2,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>Library</OutputType>
-        <RootNamespace>TestMod</RootNamespace>
-        <AssemblyName>TestMod</AssemblyName>
+        <RootNamespace>MuseDashXDGLab</RootNamespace>
+        <AssemblyName>MuseDashXDGLab</AssemblyName>
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>disable</Nullable>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>

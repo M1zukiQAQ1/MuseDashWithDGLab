@@ -1,5 +1,5 @@
 using System.Reflection;
-using Main = TestMod.Main;
+using Main = MuseDashXDGLab.Main;
 
 [assembly: AssemblyTitle(Name)]
 [assembly: AssemblyDescription(Description)]

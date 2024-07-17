@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using MuseDashMirror.Models.PositionStrategies;
 
-namespace TestMod.Patch
+namespace MuseDashXDGLab.Patch
 {
     public class IntensityIndicator
     {
