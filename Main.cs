@@ -43,7 +43,7 @@ namespace MuseDashXDGLab
         private int _timeBetweenPunishment;
         private int _baseIntensity;
         private bool _channelAEnabled = true;
-        private bool _channelBEnabled = false;
+        private bool _channelBEnabled = true;
 
         private MelonPreferences_Category intensityCategory;
         private MelonPreferences_Category serverCategory;
@@ -68,12 +68,37 @@ namespace MuseDashXDGLab
                 MuseDashMirror.UIComponents.ToggleUtils.CreatePnlMenuToggle("Channel-A Toggle", "Channel A", _channelAEnabled, (value) => {_channelAEnabled = value;});
             PatchEvents.PnlMenuPatch += (sender, e) =>
                 MuseDashMirror.UIComponents.ToggleUtils.CreatePnlMenuToggle("Channel-B Toggle", "Channel B", _channelBEnabled, (value) => {_channelBEnabled = value;});
+            PatchEvents.PnlVictoryPatch += ClearAfterStageCompleted;
+            PatchEvents.PnlStagePatch += ClearAfterStageCompleted;
             PatchEvents.GameStartPatch += ClearAfterStageCompleted;
 
             PatchEvents.GameStartPatch += (sender, e) => ReadPreference();
             PatchEvents.GameStartPatch += (sender, e) => intensityIndicator.CreateIndicators(Intensity);
             PatchEvents.GameStartPatch += (sender, e) => networkManager.ClearAB(1);
         }
+
+        private void ClearAfterStageCompleted(object sender, PnlStageEventArgs e)
+        {
+            _lastSetTime = 0;
+            Intensity = _baseIntensity;
+            networkManager.Fire(new(_intensity: 0, _waveData: "", _channel: 1));
+            networkManager.Fire(new(_intensity: 0, _waveData: "", _channel: 2));
+            ClearChannel();
+            lastGreat = 0;
+            lastMiss = 0;
+        }
+
+        private void ClearAfterStageCompleted(object sender, PnlVictoryEventArgs e)
+        {
+            _lastSetTime = 0;
+            Intensity = _baseIntensity;
+            networkManager.Fire(new(_intensity: 0, _waveData: "", _channel: 1));
+            networkManager.Fire(new(_intensity: 0, _waveData: "", _channel: 2));
+            ClearChannel();
+            lastGreat = 0;
+            lastMiss = 0;
+        }
+
         private void ClearAfterStageCompleted(object sender, GameStartEventArgs e)
         {
             _lastSetTime = 0;
@@ -93,6 +118,8 @@ namespace MuseDashXDGLab
             if (intensityCategory == null)
             {
                 intensityCategory = MelonPreferences.CreateCategory("intensityCategory");
+                intensityCategory.CreateEntry<bool>("EnableChannelA", true);
+                intensityCategory.CreateEntry<bool>("EnableChannelB", true);
                 intensityCategory.CreateEntry<int>("maxIntensity", 50);
                 intensityCategory.CreateEntry<int>("greatIncrement", 2);
                 intensityCategory.CreateEntry<int>("missIncrement", 5);
@@ -110,7 +137,8 @@ namespace MuseDashXDGLab
                 serverCategory = MelonPreferences.CreateCategory("serverCategory");
                 serverCategory.CreateEntry<string>("ip", "ws://192.168.110.218:9999/");
             }
-
+            _channelAEnabled = intensityCategory.GetEntry<bool>("EnableChannelA").Value;
+            _channelBEnabled = intensityCategory.GetEntry<bool>("EnableChannelB").Value;
             _maxIntensity = intensityCategory.GetEntry<int>("maxIntensity").Value;
             _greatIncrement = intensityCategory.GetEntry<int>("greatIncrement").Value;
             _missIncrement = intensityCategory.GetEntry<int>("missIncrement").Value;
